@@ -1,81 +1,33 @@
-/*  DepressedPress.com DP_ObCollectionOrdered
+/*  DepressedPress.com, DP_ObCollectionOrdered
 
 Author: Jim Davis, the Depressed Press of Boston
-Date: July 26, 2004
+Created: July 26, 2004
 Contact: webmaster@depressedpress.com
 Website: www.depressedpress.com
 
 Full documentation can be found at:
-http://www.depressedpress.com/Content/Development/JavaScript/Extensions/DP_ObCollectionOrdered/Index.cfm
+http://depressedpress.com/javascript-extensions/
 
 DP_ObCollectionOrdereds are used to manage groups of object instances ("Members") and abstract common group tasks.
 
 	+ An DP_ObCollectionOrdered maintains the order (rank) of it members.
 	+ Members of an DP_ObCollectionOrdered may be optionally validated for type.
-	+ A property of Member objects must contain a unique Key to be used as the member identifier. 
+	+ A property of Member objects must contain a unique Key to be used as the member identifier.
 
-Constructor
-	new DP_ObCollectionOrdered(MemberKeyName, MemberType)
-		"MemberKeyName" is the name of the property in the member objects to be used as a Key.
-		"MemberType" is a reference to the constructor for the member class used.
 
-Methods
-	isMember(MemberKey):
-		Test to see if a member exists in the collection
-	add(NewMember, AllowOverwrite):
-		Adds a new member to the collection
-	drop(MemberKey):
-		Drops a member from the collection
-	dropAll() or clear():
-		Empties the collection.
-	getCount():
-		Returns the count of objects in the collection
-	get(MemberKey):
-		Returns a member object
-	getAt(Rank):
-		Returns the member object at the specified position (index) in the collection
-	getRank(MemberKey):
-		Returns the current position (index) of the specified object
-	getAll():
-		Returns a direct reference to the members array
-	promote(MemberKey, Steps):
-		Moves a member up in rank (down in position/index)
-	promoteAt(Index, Steps):
-		Moves the member at the specified position up in rank (down in position/index)
-	demote(MemberKey, Steps):
-		Moves a member down in rank (up in position/index)
-	demoteAt(Index, Steps):
-		Moves the member at the specified position down in rank (up in position/index)
-	swap(MemberKey1, MemberKey2):
-		Swaps the positions of two member objects in the collection
-	swapAt(Index1, Index2):
-		Swaps the positions of the two member objects at the specified positions
-	setRank(MemberKey, NewRank):
-		Sets the rank (position/index) of a member object
-	setRankAt(Index, NewRank):
-		Sets the rank of the member object at the specified position
-	getKeys():
-		Returns an array of all the member object key values
-	isValidType(ObjectToCheck):
-		Checks if an object is the correct type for inclusion in the collection
-	isIndexInRange(Index):
-		Determines if an integer is in the range of indexes used by the collection
-	sort(OrderFunction):
-		Sorts the collection using a provided sorting function
-	sortByProp(Property,SortType,Order):
-		Sorts the collection by a specified member object property
++ + + + + + + + LEGAL NOTICE + + + + + + + +
 
-Copyright (c) 1996-2005, The Depressed Press of Boston (depressedpress.com)
+Copyright (c) 1996-2014, The Depressed Press (depressedpress.com)
 
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 
-+) Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer. 
++) Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
 
-+) Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution. 
++) Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
 
-+) Neither the name of the DEPRESSED PRESS OF BOSTON (DEPRESSEDPRESS.COM) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. 
++) Neither the name of the DEPRESSED PRESS (DEPRESSEDPRESS.COM) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
@@ -259,7 +211,7 @@ DP_ObCollectionOrdered.prototype.clear = function dropAll() {
 	// Parameters
 	//		None
 	// Return (Integer)
-	//		The number of DP_ObCollectionOrdered members 
+	//		The number of DP_ObCollectionOrdered members
 	//
 DP_ObCollectionOrdered.prototype.getCount = function getCount() {
 
@@ -275,7 +227,7 @@ DP_ObCollectionOrdered.prototype.getCount = function getCount() {
 	// Parameters
 	//		None
 	// Return (Boolean)
-	//		"true" if no members exist, "false" if members exist 
+	//		"true" if no members exist, "false" if members exist
 	//
 DP_ObCollectionOrdered.prototype.isEmpty = function isEmpty() {
 
@@ -388,7 +340,7 @@ DP_ObCollectionOrdered.prototype.getAll = function getAll() {
 	//		MemberKey: The key of the object or a reference to the object
 	//		Steps (default "1"): The number of steps to promote the member
 	// Return (Integer)
-	//		The new rank of the member 
+	//		The new rank of the member
 	//
 DP_ObCollectionOrdered.prototype.promote = function promote(MemberKey, Steps) {
 
@@ -426,7 +378,7 @@ DP_ObCollectionOrdered.prototype.promoteAt = function promoteAt(Index, Steps) {
 
 		// Call setRankAt() do to the work
 	if ( this.setRankAt(Index, NewIndex) ) {
-		return NewIndex;	
+		return NewIndex;
 	} else {
 		return null;
 	};
@@ -441,7 +393,7 @@ DP_ObCollectionOrdered.prototype.promoteAt = function promoteAt(Index, Steps) {
 	//		MemberKey: The key of the object or a reference to the object
 	//		Steps (default "1"): The number of steps to demote the member
 	// Return (Integer)
-	//		The new rank of the member 
+	//		The new rank of the member
 	//
 DP_ObCollectionOrdered.prototype.demote = function demote(MemberKey, Steps) {
 
@@ -479,7 +431,7 @@ DP_ObCollectionOrdered.prototype.demoteAt = function demoteAt(Index, Steps) {
 
 		// Call setRankAt() do to the work
 	if ( this.setRankAt(Index, NewIndex) ) {
-		return 	NewIndex;	
+		return 	NewIndex;
 	} else {
 		return null;
 	};
@@ -494,7 +446,7 @@ DP_ObCollectionOrdered.prototype.demoteAt = function demoteAt(Index, Steps) {
 	//		MemberKey1: The key of the first object to be moved or a reference to the object
 	//		MemberKey2:  The key of the second object to be moved or a reference to the object
 	// Return (Boolean)
-	//		"true" upon completion 
+	//		"true" upon completion
 	//
 DP_ObCollectionOrdered.prototype.swap = function swap(MemberKey1, MemberKey2) {
 
@@ -523,14 +475,14 @@ DP_ObCollectionOrdered.prototype.swap = function swap(MemberKey1, MemberKey2) {
 	//		Index1: The first index to move
 	//		Index2: The second index to move
 	// Return (Boolean)
-	//		"true" upon completion 
+	//		"true" upon completion
 	//
 DP_ObCollectionOrdered.prototype.swapAt = function swapAt(Index1, Index2) {
 
 	var TempCell = this.Members[Index1];
 	this.Members[Index1] = this.Members[Index2];
 	this.Members[Index2] = TempCell;
-	
+
 	return true;
 
 };
